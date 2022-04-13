@@ -10,7 +10,7 @@ const Root = ({ state }) => {
   const data = state.source.get(state.router.link);
   return (
     <>
-      <h1>Hello Frontity</h1>
+      <h1>Hello Frontity DANO</h1>
       <p>Current URL: {state.router.link}</p>
       <nav>
         <Link link="/">Home</Link>
