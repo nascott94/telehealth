@@ -1,21 +1,32 @@
-// File: /packages/my-first-theme/src/components/list.js
-
 import React from "react";
-import { connect } from "frontity";
+import { connect, styled } from "frontity";
+import Link from "@frontity/components/link";
+
+const Items = styled.div`
+  & > a {
+    display: block;
+    margin: 6px 0;
+    font-size: 1.2em;
+    color: steelblue;
+    text-decoration: none;
+  }
+`;
 
 const List = ({ state }) => {
   const data = state.source.get(state.router.link);
 
   return (
-    <div>
+    <Items>
       {data.items.map((item) => {
+        const post = state.source[item.type][item.id];
         return (
-          <div key={item.id}>
-            {item.type} – {item.id} – {item.link}
-          </div>
+          <Link key={item.id} link={post.link}>
+            {post.title.rendered}
+            <br />
+          </Link>
         );
       })}
-    </div>
+    </Items>
   );
 };
 
