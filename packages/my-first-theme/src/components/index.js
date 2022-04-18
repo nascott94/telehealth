@@ -12,7 +12,12 @@ const Header = styled.header`
   background-color: #e5edee;
   border-width: 0 0 8px 0;
   border-style: solid;
-  border-color: maroon;
+  border-color: ${(props) =>
+    props.isPostType
+      ? props.isPage
+        ? "lightsteelblue"
+        : "lightseagreen"
+      : "maroon"};
 
   h1 {
     color: #4a4a4a;
@@ -57,8 +62,20 @@ const Menu = styled.nav`
   }
 `;
 
-const Root = ({ state }) => {
+const Button = styled.button`
+  background: transparent;
+  border: none;
+  color: #aaa;
+
+  :hover {
+    cursor: pointer;
+    color: #888;
+  }
+`;
+
+const Root = ({ state, actions }) => {
   const data = state.source.get(state.router.link);
+
   return (
     <>
       <Global
@@ -68,10 +85,21 @@ const Root = ({ state }) => {
           }
         `}
       />
-      <Header>
+      <Header isPostType={data.isPostType} isPage={data.isPage}>
         <HeaderContent>
           <h1>Frontity Workshop</h1>
-          <p>Current URL: {state.router.link}</p>
+          {state.teleheathTheme.isUrlVisible ? (
+            <>
+              Current URL: {state.router.link}{" "}
+              <Button onClick={actions.teleheathTheme.toggleUrl}>
+                &#x3c; Hide URL
+              </Button>
+            </>
+          ) : (
+            <Button onClick={actions.teleheathTheme.toggleUrl}>
+              Show URL &#x3e;
+            </Button>
+          )}
           <Menu>
             <Link link="/">Home</Link>
             <Link link="/page/2">More posts</Link>
