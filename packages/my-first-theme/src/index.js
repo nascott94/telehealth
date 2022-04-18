@@ -8,10 +8,14 @@ const myFirstTheme = {
     teleheathTheme: Root,
   },
   state: {
-    teleheathTheme: {},
+    teleheathTheme: { isUrlVisible: false },
   },
   actions: {
-    teleheathTheme: {},
+    teleheathTheme: {
+      toggleUrl: ({ state }) => {
+        state.teleheathTheme.isUrlVisible = !state.teleheathTheme.isUrlVisible;
+      },
+    },
   },
 };
 
