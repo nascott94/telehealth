@@ -1,6 +1,7 @@
 // File: /packages/my-first-theme/src/index.js
 
 import Root from "./components";
+import link from "@frontity/html2react/processors/link";
 
 const myFirstTheme = {
   name: "my-first-theme",
@@ -15,6 +16,11 @@ const myFirstTheme = {
       toggleUrl: ({ state }) => {
         state.teleheathTheme.isUrlVisible = !state.teleheathTheme.isUrlVisible;
       },
+    },
+  },
+  libraries: {
+    html2react: {
+      processors: [link],
     },
   },
 };

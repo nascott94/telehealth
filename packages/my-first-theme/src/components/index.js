@@ -7,6 +7,9 @@ import Switch from "@frontity/components/switch";
 import List from "./list";
 import Post from "./post";
 import Page from "./page";
+import Loading from "./loading";
+import Error from "./error";
+import link from "@frontity/html2react/processors/link";
 
 const Header = styled.header`
   background-color: #e5edee;
@@ -109,10 +112,12 @@ const Root = ({ state, actions }) => {
       </Header>
       <main>
         <Switch>
+          <Loading when={data.isFetching} />
           <List when={data.isArchive} />
           <Post when={data.isPost} />
           <Page when={data.isPage} />
           <Page when={data.isDestinations} />
+          <Error when={data.isError} />
         </Switch>
       </main>
     </>
